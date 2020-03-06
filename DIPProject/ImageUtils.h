@@ -4,8 +4,6 @@
 class ImageUtils
 {
 public:
-	ImageUtils();
-	~ImageUtils();
     static void alternativeLineReduction(cv::Mat* inputImage, cv::Mat* outputImage, int width, int height);
     static void fractionReduction(cv::Mat* inputImage, cv::Mat* outputImage, int width, int height);
     static void fractionEnlargement(cv::Mat* inputImage, cv::Mat* outputImage, int width, int height);
@@ -16,6 +14,7 @@ public:
     static void bicubicInterpolation(cv::Mat* inputImage, cv::Mat* outputImage);
 
 private:
-    static double getBicubicValue(double a[][4], double x, double y);
+    static double getBicubicValue(int a[][4], int x, int y);
     static double getBilinearValue(int cornerPoints[][2], double p, double q);
+    static int getPixelValue(cv::Mat image, int x, int y, int channel);
 };
