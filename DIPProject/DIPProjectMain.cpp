@@ -1,5 +1,5 @@
 #include <iostream>
-#include "ImageUtils.h"
+#include "ImageUtils0.h"
 #include "ImageUtils1.h"
 int main()
 {
@@ -14,7 +14,7 @@ int main()
 	//bicubicInterpolation(&sourceImage, &outImage);
 	//imageTranslation(&sourceImage, &outImage, -50, 20);
 	//imageRotation(&sourceImage, &outImage, 45);
-	//imageShear(&sourceImage, &outImage, 0.2, 0.2);
+	imageShear(&sourceImage, &outImage, 0.2, 0.2);
 
 	if (sourceImage.empty())
 	{

@@ -155,12 +155,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DIPProject.cpp" />
+    <ClCompile Include="DIPProjectMain.cpp" />
     <ClCompile Include="ImageUtils0.cpp" />
     <ClCompile Include="ImageUtils1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ImageUtils.h" />
+    <ClInclude Include="ImageUtils0.h" />
     <ClInclude Include="ImageUtils1.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
