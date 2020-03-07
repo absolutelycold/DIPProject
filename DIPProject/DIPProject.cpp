@@ -1,16 +1,21 @@
 #include <iostream>
 #include "ImageUtils.h"
+#include "ImageUtils1.h"
 int main()
 {
     cv::Mat sourceImage = cv::imread("./lena.jpg");
 	cv::Mat outImage;
-	//ImageUtils::alternativeLineReduction(&sourceImage, &outImage, 100, 100);
-	//ImageUtils::biLinearInterpolation(&sourceImage, &outImage);
-	//ImageUtils::fractionEnlargement(&sourceImage, &outImage, 400, 600);
-	//ImageUtils::nearestEnlargement(&sourceImage, &outImage);
-	//ImageUtils::negativeImage(&sourceImage, &outImage);
-	//ImageUtils::pixelReplication(&sourceImage, &outImage, 2);
-	ImageUtils::bicubicInterpolation(&sourceImage, &outImage);
+	//alternativeLineReduction(&sourceImage, &outImage, 100, 100);
+	//biLinearInterpolation(&sourceImage, &outImage);
+	//fractionEnlargement(&sourceImage, &outImage, 400, 600);
+	//nearestEnlargement(&sourceImage, &outImage);
+	//negativeImage(&sourceImage, &outImage);
+	//pixelReplication(&sourceImage, &outImage, 2);
+	//bicubicInterpolation(&sourceImage, &outImage);
+	//imageTranslation(&sourceImage, &outImage, -50, 20);
+	//imageRotation(&sourceImage, &outImage, 45);
+	imageShear(&sourceImage, &outImage, 0.3, 0);
+
 	if (sourceImage.empty())
 	{
 		std::cout << "The pic cannot read.\n";

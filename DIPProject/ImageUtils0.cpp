@@ -1,6 +1,6 @@
 #include "ImageUtils.h"
 
-void ImageUtils::alternativeLineReduction(cv::Mat* inputImage, cv::Mat* outputImage, int width, int height)
+void alternativeLineReduction(cv::Mat* inputImage, cv::Mat* outputImage, int width, int height)
 {
     int inputWidth = inputImage->cols;
     int inputHeight = inputImage->rows;
@@ -15,7 +15,7 @@ void ImageUtils::alternativeLineReduction(cv::Mat* inputImage, cv::Mat* outputIm
     }
 }
 
-void ImageUtils::fractionReduction(cv::Mat* inputImage, cv::Mat* outputImage, int width, int height)
+void fractionReduction(cv::Mat* inputImage, cv::Mat* outputImage, int width, int height)
 {
     int input_width = inputImage->cols;
     int input_height = inputImage->rows;
@@ -34,7 +34,7 @@ void ImageUtils::fractionReduction(cv::Mat* inputImage, cv::Mat* outputImage, in
     }
 }
 
-void ImageUtils::fractionEnlargement(cv::Mat* inputImage, cv::Mat* outputImage, int width, int height)
+void fractionEnlargement(cv::Mat* inputImage, cv::Mat* outputImage, int width, int height)
 {
     int input_width = inputImage->cols;
     int input_height = inputImage->rows;
@@ -53,7 +53,7 @@ void ImageUtils::fractionEnlargement(cv::Mat* inputImage, cv::Mat* outputImage, 
     }
 }
 
-void ImageUtils::pixelReplication(cv::Mat* inputImage, cv::Mat* enlargedImage, int scaleNum)
+void pixelReplication(cv::Mat* inputImage, cv::Mat* enlargedImage, int scaleNum)
 {
     int width = inputImage->cols;
     int height = inputImage->rows;
@@ -72,7 +72,7 @@ void ImageUtils::pixelReplication(cv::Mat* inputImage, cv::Mat* enlargedImage, i
     }
 }
 
-void ImageUtils::negativeImage(cv::Mat* inputImage, cv::Mat* negativedImage)
+void negativeImage(cv::Mat* inputImage, cv::Mat* negativedImage)
 {
     int width = inputImage->cols;
     int height = inputImage->rows;
@@ -89,7 +89,7 @@ void ImageUtils::negativeImage(cv::Mat* inputImage, cv::Mat* negativedImage)
     }
 }
 
-void ImageUtils::nearestEnlargement(cv::Mat* inputImage, cv::Mat* enlargedImage)
+void nearestEnlargement(cv::Mat* inputImage, cv::Mat* enlargedImage)
 {
     int inputWidth = inputImage->cols;
     int inputHeight = inputImage->rows;
@@ -142,7 +142,7 @@ void ImageUtils::nearestEnlargement(cv::Mat* inputImage, cv::Mat* enlargedImage)
     }
 }
 
-void ImageUtils::biLinearInterpolation(cv::Mat* inputImage, cv::Mat* outputImage)
+void biLinearInterpolation(cv::Mat* inputImage, cv::Mat* outputImage)
 {
     int inputWidth = inputImage->cols;
     int inputHeight = inputImage->rows;
@@ -195,7 +195,7 @@ void ImageUtils::biLinearInterpolation(cv::Mat* inputImage, cv::Mat* outputImage
     }
 }
 
-void ImageUtils::bicubicInterpolation(cv::Mat* inputImage, cv::Mat* outputImage)
+void bicubicInterpolation(cv::Mat* inputImage, cv::Mat* outputImage)
 {
     int inputWidth = inputImage->cols;
     int inputHeight = inputImage->rows;
@@ -331,7 +331,7 @@ void ImageUtils::bicubicInterpolation(cv::Mat* inputImage, cv::Mat* outputImage)
     //std::cout << pixelnum1 + pixelnum2 << std::endl;
 }
 
-double ImageUtils::getBicubicValue(int a[][4], int x, int y)
+double getBicubicValue(int a[][4], int x, int y)
 {
     double interpolationNum = 0;
     for (int i = 0; i < 4; i++)
@@ -373,7 +373,7 @@ double ImageUtils::getBicubicValue(int a[][4], int x, int y)
     return interpolationNum;
 }
 
-double ImageUtils::getBilinearValue(int cornerPoints[][2], double p, double q)
+double getBilinearValue(int cornerPoints[][2], double p, double q)
 {
     double interpolateValue = ((1 - p) * (1 - q) * cornerPoints[0][0])
         + (p * (1 - q) * cornerPoints[0][1])
@@ -382,7 +382,7 @@ double ImageUtils::getBilinearValue(int cornerPoints[][2], double p, double q)
     return interpolateValue;
 }
 
-int ImageUtils::getPixelValue(cv::Mat image, int x, int y, int channel)
+int getPixelValue(cv::Mat image, int x, int y, int channel)
 {
     int imageHeight = image.rows;
     int imageWidth = image.cols;
