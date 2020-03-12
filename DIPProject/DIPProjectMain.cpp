@@ -3,7 +3,7 @@
 #include "ImageUtils1.h"
 int main()
 {
-    cv::Mat sourceImage = cv::imread("./lena.jpg");
+    cv::Mat sourceImage = cv::imread("./bridge.pgm");
 	cv::Mat outImage;
 	//alternativeLineReduction(&sourceImage, &outImage, 100, 100);
 	//biLinearInterpolation(&sourceImage, &outImage);
@@ -14,8 +14,12 @@ int main()
 	//bicubicInterpolation(&sourceImage, &outImage);
 	//imageTranslation(&sourceImage, &outImage, -50, 20);
 	//imageRotation(&sourceImage, &outImage, 45);
-	imageShear(&sourceImage, &outImage, 0.2, 0.2);
-
+	//imageShear(&sourceImage, &outImage, 0.2, 0.2);
+	//averageFilter(&sourceImage, &outImage, 9);
+	//medianFilter(&sourceImage, &outImage, 6);
+	binarizationFilter(&sourceImage, &outImage, 150);
+	//int test[] = { 432, 3, 4324, 43, 432, 54, 4 };
+	//bolbSortInt(test, 7);
 	if (sourceImage.empty())
 	{
 		std::cout << "The pic cannot read.\n";
