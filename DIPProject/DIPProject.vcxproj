@@ -158,11 +158,13 @@
     <ClCompile Include="DIPProjectMain.cpp" />
     <ClCompile Include="ImageUtils0.cpp" />
     <ClCompile Include="ImageUtils1.cpp" />
+    <ClCompile Include="ImageUtils2.cpp" />
     <ClCompile Include="sortAlgorithm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageUtils0.h" />
     <ClInclude Include="ImageUtils1.h" />
+    <ClInclude Include="ImageUtils2.h" />
     <ClInclude Include="sortAlgorithm.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

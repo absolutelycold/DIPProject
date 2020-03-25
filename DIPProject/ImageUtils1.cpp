@@ -41,8 +41,8 @@ void imageRotation(cv::Mat* inputImage, cv::Mat* outputImage, int degree)
 		for (int col = 0; col < inputWidth; col++)
 		{
 			float radians = degree * (M_PI / 180);
-			int newX = row * cos(radians) - col * sin(radians);
-			int newY = row * sin(radians) + col * cos(radians);
+			int newX = floor(row * cos(radians) - col * sin(radians));
+			int newY = floor(row * sin(radians) + col * cos(radians));
 
 			// move current pixel to (newX, newY)
 			if ((newX >= 0) && (newX < inputHeight))
