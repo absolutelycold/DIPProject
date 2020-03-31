@@ -6,7 +6,7 @@
 
 int main()
 {
-    cv::Mat sourceImage = cv::imread("/home/justice/Pictures/lena.jpg", cv::IMREAD_GRAYSCALE);
+	cv::Mat sourceImage = cv::imread("/home/justice/Pictures/camera.pgm", cv::IMREAD_GRAYSCALE);
 	//cv::Mat sourceImage = cv::imread("/home/justice/Pictures/lena.jpg");
 	cv::Mat outImage;
 	//alternativeLineReduction(&sourceImage, &outImage, 100, 100);
@@ -26,17 +26,26 @@ int main()
 	//sobel(&sourceImage, &outImage);
 	//gamaCorrelation(&sourceImage, &outImage, 1);
 	//histogramEqualization_GRAY(&sourceImage, &outImage, LOCAL_HISTOGRAM_EQUALIZATION);
-	
+
 	//int test[] = { 432, 3, 4324, 43, 432, 54, 4 };
 	//bolbSortInt(test, 7);
-	cv::Mat ideal = ILPF(sourceImage, 160);
-	ideal = ideal(cv::Rect(0,0, sourceImage.cols, sourceImage.rows));
+
+	// Ideal Lowpass filter
+	/*
+	cv::Mat ideal = ILPF(sourceImage, 60);
+	ideal = ideal(cv::Rect(0, 0, sourceImage.cols, sourceImage.rows));
+	*/
+
+	// Butterworth lowpass filter
+	cv::Mat butterworth = BLPF(sourceImage, 20, 2);
+	butterworth = butterworth(cv::Rect(0, 0, sourceImage.cols, sourceImage.rows));
+
 	if (sourceImage.empty())
 	{
 		std::cout << "The pic cannot read.\n";
 		return EXIT_FAILURE;
 	}
-	
+
 	/*
 	if (outImage.empty())
 	{
@@ -47,9 +56,7 @@ int main()
 
 	cv::imshow("source image", sourceImage);
 
-	
-	cv::imshow("out image", ideal);
+	cv::imshow("out image", butterworth);
 	cv::waitKey();
 	return EXIT_SUCCESS;
 }
- 

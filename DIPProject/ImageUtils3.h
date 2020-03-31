@@ -6,6 +6,8 @@
 
 cv::Mat ILPF(cv::Mat& src, float sigma);
 cv::Mat ideal_lbrf_kernel(cv::Mat& scr,float sigma);
+cv::Mat BLPF(cv::Mat &src, float d0, int n);
+cv::Mat butterworth_lbrf_kernel(cv::Mat &scr, float sigma, int n);
 cv::Mat freqfilt(cv::Mat &scr,cv::Mat &blur);
 
 #endif
