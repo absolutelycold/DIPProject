@@ -29,7 +29,8 @@ cv::Mat BLPF(cv::Mat &src, float d0, int n)
     return result;
 }
 
-cv::Mat GLPF(cv::Mat& scr,float sigma) {
+cv::Mat GLPF(cv::Mat &scr, float sigma)
+{
     int M = cv::getOptimalDFTSize(scr.rows);
     int N = cv::getOptimalDFTSize(scr.cols);
     cv::Mat padded; //調整圖像加速傅里葉變換
@@ -41,19 +42,19 @@ cv::Mat GLPF(cv::Mat& scr,float sigma) {
     return result;
 }
 
-cv::Mat gaussian_lbrf_kernal(cv::Mat& scr, float sigma)
+cv::Mat gaussian_lbrf_kernal(cv::Mat &scr, float sigma)
 {
     cv::Mat gaussianBlur(scr.size(), CV_32FC1); //，CV_32FC1
-    float d0 = 2 * sigma * sigma;           //高斯函数参数，越小，频率高斯滤波器越窄，滤除高频成分越多，图像就越平滑
+    float d0 = 2 * sigma * sigma;
     for (int i = 0; i < scr.rows; i++)
     {
         for (int j = 0; j < scr.cols; j++)
         {
-            float d = pow(float(i - scr.rows / 2), 2) + pow(float(j - scr.cols / 2), 2); //分子,计算pow必须为float型
-            gaussianBlur.at<float>(i, j) = expf(-d / d0);                                //expf为以e为底求幂（必须为float型）
+            float d = pow(float(i - scr.rows / 2), 2) + pow(float(j - scr.cols / 2), 2);
+            gaussianBlur.at<float>(i, j) = expf(-d / d0);
         }
     }
-    
+
     std::string name = "高斯低通滤波器d0=" + std::to_string(sigma);
     imshow(name, gaussianBlur);
     return gaussianBlur;

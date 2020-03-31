@@ -6,7 +6,7 @@
 
 int main()
 {
-	cv::Mat sourceImage = cv::imread("/home/justice/Pictures/lena.pgm", cv::IMREAD_GRAYSCALE);
+	cv::Mat sourceImage = cv::imread("/home/justice/Pictures/camera.pgm", cv::IMREAD_GRAYSCALE);
 	//cv::Mat sourceImage = cv::imread("/home/justice/Pictures/lena.jpg");
 	cv::Mat outImage;
 	//alternativeLineReduction(&sourceImage, &outImage, 100, 100);
@@ -43,7 +43,7 @@ int main()
 	*/
 
 	// Gaussian lowpass filter
-	cv::Mat gaussian = GLPF(sourceImage, 30);
+	cv::Mat gaussian = GLPF(sourceImage, 60);
 	gaussian = gaussian(cv::Rect(0, 0, sourceImage.cols, sourceImage.rows));
 
 	if (sourceImage.empty())
