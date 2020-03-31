@@ -130,9 +130,9 @@ void gamaCorrelation(cv::Mat* inputImage, cv::Mat* outImage, float gama)
 
 	double imageAvr = ImageVariance1C(outImage);
 	char varInfo[256];
-	sprintf_s(varInfo, "Variance: %.5f", imageAvr);
+	sprintf(varInfo, "Variance: %.5f", imageAvr);
 	char gamaInfo[256];
-	sprintf_s(gamaInfo, "Gama: %.2f", gama);
+	sprintf(gamaInfo, "Gama: %.2f", gama);
 	cv::putText(*outImage, varInfo, cv::Point(10, 20), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 255), 
 		1.5);
 	cv::putText(*outImage, gamaInfo, cv::Point(10, 35), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 255), 

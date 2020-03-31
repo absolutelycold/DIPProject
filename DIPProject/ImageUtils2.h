@@ -1,4 +1,7 @@
 #pragma once
+#ifndef __ImageUtils1630003036_2
+#define __ImageUtils1630003036_2
+
 #include<opencv2/opencv.hpp>
 #include <math.h>
 #include <iostream>
@@ -13,3 +16,5 @@ void gamaCorrelation(cv::Mat* inputImage, cv::Mat* outImage, float gama);
 void histogramEqualization_GRAY(cv::Mat* inputImage, cv::Mat* outImage, int type);
 double ImageAverage1C(cv::Mat* image);
 double ImageVariance1C(cv::Mat* image);
+
+#endif
