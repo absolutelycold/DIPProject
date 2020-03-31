@@ -22,11 +22,41 @@ cv::Mat BLPF(cv::Mat &src, float d0, int n)
     int N = cv::getOptimalDFTSize(src.cols);
     cv::Mat padded;
     copyMakeBorder(src, padded, 0, M - src.rows, 0, N - src.cols, cv::BORDER_CONSTANT, cv::Scalar::all(0));
-    padded.convertTo(padded,CV_32FC1); //將圖像轉換爲flaot型
+    padded.convertTo(padded, CV_32FC1); //將圖像轉換爲flaot型
 
-    cv::Mat butterworth_kernel=butterworth_lbrf_kernel(padded,d0, n);//理想低通濾波器
-    cv::Mat result = freqfilt(padded,butterworth_kernel);
+    cv::Mat butterworth_kernel = butterworth_lbrf_kernel(padded, d0, n); //理想低通濾波器
+    cv::Mat result = freqfilt(padded, butterworth_kernel);
     return result;
+}
+
+cv::Mat GLPF(cv::Mat& scr,float sigma) {
+    int M = cv::getOptimalDFTSize(scr.rows);
+    int N = cv::getOptimalDFTSize(scr.cols);
+    cv::Mat padded; //調整圖像加速傅里葉變換
+    copyMakeBorder(scr, padded, 0, M - scr.rows, 0, N - scr.cols, cv::BORDER_CONSTANT, cv::Scalar::all(0));
+    padded.convertTo(padded, CV_32FC1); //將圖像轉換爲flaot型
+
+    cv::Mat ideal_kernel = gaussian_lbrf_kernal(padded, sigma); //理想低通濾波器
+    cv::Mat result = freqfilt(padded, ideal_kernel);
+    return result;
+}
+
+cv::Mat gaussian_lbrf_kernal(cv::Mat& scr, float sigma)
+{
+    cv::Mat gaussianBlur(scr.size(), CV_32FC1); //，CV_32FC1
+    float d0 = 2 * sigma * sigma;           //高斯函数参数，越小，频率高斯滤波器越窄，滤除高频成分越多，图像就越平滑
+    for (int i = 0; i < scr.rows; i++)
+    {
+        for (int j = 0; j < scr.cols; j++)
+        {
+            float d = pow(float(i - scr.rows / 2), 2) + pow(float(j - scr.cols / 2), 2); //分子,计算pow必须为float型
+            gaussianBlur.at<float>(i, j) = expf(-d / d0);                                //expf为以e为底求幂（必须为float型）
+        }
+    }
+    
+    std::string name = "高斯低通滤波器d0=" + std::to_string(sigma);
+    imshow(name, gaussianBlur);
+    return gaussianBlur;
 }
 
 cv::Mat butterworth_lbrf_kernel(cv::Mat &scr, float sigma, int n)
@@ -36,7 +66,7 @@ cv::Mat butterworth_lbrf_kernel(cv::Mat &scr, float sigma, int n)
     //    階數n=5 明顯振鈴和負值
     //    階數n=20 與ILPF相似
     cv::Mat butterworth_low_pass(scr.size(), CV_32FC1); //，CV_32FC1
-    double D0 = sigma;                              //半徑D0越小，模糊越大；半徑D0越大，模糊越小
+    double D0 = sigma;                                  //半徑D0越小，模糊越大；半徑D0越大，模糊越小
     for (int i = 0; i < scr.rows; i++)
     {
         for (int j = 0; j < scr.cols; j++)

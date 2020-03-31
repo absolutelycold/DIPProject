@@ -6,7 +6,7 @@
 
 int main()
 {
-	cv::Mat sourceImage = cv::imread("/home/justice/Pictures/camera.pgm", cv::IMREAD_GRAYSCALE);
+	cv::Mat sourceImage = cv::imread("/home/justice/Pictures/lena.pgm", cv::IMREAD_GRAYSCALE);
 	//cv::Mat sourceImage = cv::imread("/home/justice/Pictures/lena.jpg");
 	cv::Mat outImage;
 	//alternativeLineReduction(&sourceImage, &outImage, 100, 100);
@@ -37,8 +37,14 @@ int main()
 	*/
 
 	// Butterworth lowpass filter
-	cv::Mat butterworth = BLPF(sourceImage, 20, 2);
+	/*
+	cv::Mat butterworth = BLPF(sourceImage, 30);
 	butterworth = butterworth(cv::Rect(0, 0, sourceImage.cols, sourceImage.rows));
+	*/
+
+	// Gaussian lowpass filter
+	cv::Mat gaussian = GLPF(sourceImage, 30);
+	gaussian = gaussian(cv::Rect(0, 0, sourceImage.cols, sourceImage.rows));
 
 	if (sourceImage.empty())
 	{
@@ -56,7 +62,7 @@ int main()
 
 	cv::imshow("source image", sourceImage);
 
-	cv::imshow("out image", butterworth);
+	cv::imshow("out image", gaussian);
 	cv::waitKey();
-	return EXIT_SUCCESS;
+	
 }
