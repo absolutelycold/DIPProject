@@ -6,7 +6,7 @@
 
 int main()
 {
-	cv::Mat sourceImage = cv::imread("/home/justice/Pictures/camera.pgm", cv::IMREAD_GRAYSCALE);
+	cv::Mat sourceImage = cv::imread("/home/justice/Pictures/rampr128.pgm", cv::IMREAD_GRAYSCALE);
 	//cv::Mat sourceImage = cv::imread("/home/justice/Pictures/lena.jpg");
 	cv::Mat outImage;
 	//alternativeLineReduction(&sourceImage, &outImage, 100, 100);
@@ -43,6 +43,7 @@ int main()
 	*/
 
 	// Gaussian lowpass filter
+	/*
 	cv::Mat gaussian = GLPF(sourceImage, 60);
 	gaussian = gaussian(cv::Rect(0, 0, sourceImage.cols, sourceImage.rows));
 
@@ -51,6 +52,8 @@ int main()
 		std::cout << "The pic cannot read.\n";
 		return EXIT_FAILURE;
 	}
+	*/
+
 
 	/*
 	if (outImage.empty())
@@ -59,10 +62,10 @@ int main()
 		return EXIT_FAILURE;
 	}
 	*/
+	TwoDDFT(sourceImage);
+	//cv::imshow("source image", sourceImage);
 
-	cv::imshow("source image", sourceImage);
-
-	cv::imshow("out image", gaussian);
-	cv::waitKey();
+	//cv::imshow("out image", outImage);
+	//cv::waitKey();
 	
 }
